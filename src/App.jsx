@@ -663,7 +663,7 @@ function Footer() {
 
         <div className="footer-links">
           <a
-            href="https://github.com/"
+            href="https://github.com/linsajo"
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub profile"
