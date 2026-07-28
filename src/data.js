@@ -111,7 +111,7 @@ export const projects = [
     type: 'Enterprise platform',
     description:
       'A complete multi-role platform for admissions, attendance, examinations, fees, timetables, inventory, leave management, notices, reporting and user administration.',
-    stack: ['React', 'Node.js', 'Django', 'PostgreSQL'],
+    stack: ['HTML', 'CSS', 'PHP', 'MySQL'],
     imageClass: 'school-project',
     liveUrl: '#',
     sourceUrl: '#',

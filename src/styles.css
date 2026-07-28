@@ -244,7 +244,7 @@ ul {
   color: var(--primary);
 }
 
-.navigation a:not(.mobile-resume-button)::after {
+.navigation a::after {
   position: absolute;
   right: 0;
   bottom: -7px;
@@ -259,37 +259,6 @@ ul {
 
 .navigation a:hover::after {
   transform: scaleX(1);
-}
-
-.resume-button,
-.mobile-resume-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  border: 1px solid var(--primary);
-  border-radius: 11px;
-  background: var(--primary);
-  color: white;
-  font-weight: 700;
-  transition:
-    background 0.25s ease,
-    transform 0.25s ease;
-}
-
-.resume-button {
-  padding: 11px 17px;
-  font-size: 0.86rem;
-}
-
-.resume-button:hover,
-.mobile-resume-button:hover {
-  background: var(--primary-dark);
-  transform: translateY(-2px);
-}
-
-.mobile-resume-button {
-  display: none;
 }
 
 .menu-button {
@@ -1238,128 +1207,129 @@ ul {
 }
 
 /* =========================
-   CONTACT
+   WHAT I OFFER
 ========================= */
 
-.contact-section {
-  background: var(--background-alt);
-}
-
-.contact-card {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 65px;
-  padding: 55px;
-  border: 1px solid var(--border);
-  border-radius: 25px;
+.offer-section {
   background:
-    linear-gradient(
-      135deg,
-      rgba(239, 111, 97, 0.07),
-      transparent 42%
+    radial-gradient(
+      circle at 88% 12%,
+      rgba(239, 111, 97, 0.1),
+      transparent 28%
     ),
-    var(--surface);
-  box-shadow: var(--shadow-md);
+    var(--background-alt);
 }
 
-.contact-card h2 {
-  max-width: 440px;
-  margin-bottom: 20px;
-  color: var(--primary);
-  font-size: clamp(2.1rem, 4vw, 3.15rem);
-  letter-spacing: -0.04em;
-  line-height: 1.14;
-}
-
-.contact-card > div > p:not(.eyebrow) {
-  max-width: 490px;
-  color: var(--text-secondary);
-  line-height: 1.82;
-}
-
-.contact-links {
+.offer-grid {
   display: grid;
-  gap: 18px;
-  margin-top: 35px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
 }
 
-.contact-links a,
-.contact-location {
+.offer-card {
   display: flex;
-  align-items: center;
-  gap: 14px;
-  color: var(--primary);
-}
-
-.contact-links svg,
-.contact-location svg {
-  width: 21px;
-  color: var(--accent);
-}
-
-.contact-links span,
-.contact-location span {
-  display: flex;
+  min-height: 350px;
   flex-direction: column;
+  padding: 30px;
+  border: 1px solid var(--border);
+  border-radius: 21px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
-.contact-links small,
-.contact-location small {
-  color: var(--text-muted);
-  font-size: 0.7rem;
+.offer-card:hover {
+  border-color: rgba(239, 111, 97, 0.4);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-7px);
 }
 
-.contact-form {
+.offer-icon {
   display: grid;
-  gap: 18px;
-}
-
-.contact-form label {
-  display: grid;
-  gap: 8px;
+  width: 58px;
+  height: 58px;
+  margin-bottom: 24px;
+  place-items: center;
+  border-radius: 15px;
+  background: var(--primary-soft);
   color: var(--primary);
-  font-size: 0.81rem;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.offer-card:hover .offer-icon {
+  background: var(--accent);
+  color: white;
+  transform: rotate(-4deg) scale(1.04);
+}
+
+.offer-card h3 {
+  margin-bottom: 13px;
+  color: var(--primary);
+  font-size: 1.15rem;
+}
+
+.offer-card > p {
+  margin-bottom: 24px;
+  color: var(--text-secondary);
+  font-size: 0.87rem;
+  line-height: 1.75;
+}
+
+.offer-technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.offer-technologies span {
+  padding: 6px 10px;
+  border: 1px solid rgba(23, 59, 103, 0.09);
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 0.69rem;
   font-weight: 700;
 }
 
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
+.offer-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 35px;
+  padding: 35px 38px;
   border: 1px solid var(--border);
-  border-radius: 10px;
-  outline: none;
-  background: var(--surface-soft);
-  color: var(--text);
-  transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
+  border-radius: 21px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(23, 59, 103, 0.97),
+      rgba(15, 41, 74, 0.97)
+    );
+  box-shadow: var(--shadow-md);
 }
 
-.contact-form input {
-  height: 51px;
-  padding: 0 15px;
+.offer-action .eyebrow {
+  margin-bottom: 9px;
+  color: #ffc1ba;
 }
 
-.contact-form textarea {
-  min-height: 155px;
-  padding: 15px;
-  resize: vertical;
+.offer-action h3 {
+  max-width: 650px;
+  color: white;
+  font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+  line-height: 1.35;
 }
 
-.contact-form input:focus,
-.contact-form textarea:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-soft);
-}
-
-.contact-form input::placeholder,
-.contact-form textarea::placeholder {
-  color: var(--text-muted);
-}
-
-.contact-form .primary-button {
-  width: fit-content;
-  margin-top: 3px;
+.offer-action .primary-button {
+  flex-shrink: 0;
 }
 
 /* =========================
@@ -1417,8 +1387,9 @@ ul {
     height: 450px;
   }
 
-  .skills-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .skills-grid,
+  .offer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .projects-grid {
@@ -1437,10 +1408,6 @@ ul {
 ========================= */
 
 @media (max-width: 880px) {
-  .desktop-resume-button {
-    display: none;
-  }
-
   .menu-button {
     display: grid;
   }
@@ -1485,11 +1452,6 @@ ul {
     display: none;
   }
 
-  .mobile-resume-button {
-    display: flex;
-    margin-top: 8px;
-  }
-
   .hero {
     min-height: auto;
     padding-top: 130px;
@@ -1525,8 +1487,7 @@ ul {
   }
 
   .about-grid,
-  .career-grid,
-  .contact-card {
+  .career-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1534,8 +1495,9 @@ ul {
     gap: 55px;
   }
 
-  .contact-card {
-    gap: 48px;
+  .offer-action {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
 
@@ -1550,6 +1512,10 @@ ul {
 
   .section {
     padding: 80px 0;
+  }
+
+  .section-heading {
+    margin-bottom: 38px;
   }
 
   .hero {
@@ -1598,7 +1564,8 @@ ul {
 
   .about-details,
   .skills-grid,
-  .projects-grid {
+  .projects-grid,
+  .offer-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1611,11 +1578,16 @@ ul {
     padding: 26px;
   }
 
-  .contact-card {
-    padding: 29px 22px;
+  .offer-card {
+    min-height: auto;
+    padding: 26px;
   }
 
-  .contact-form .primary-button {
+  .offer-action {
+    padding: 28px 23px;
+  }
+
+  .offer-action .primary-button {
     width: 100%;
   }
 

@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   ArrowRight,
@@ -8,12 +7,9 @@ import {
   Cloud,
   Code2,
   Database,
-  Download,
-  ExternalLink,
   GithubIcon,
   GraduationCap,
   Linkedin,
-  Mail,
   MapPin,
   Menu,
   Server,
@@ -38,7 +34,52 @@ const navigation = [
   { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
   { label: 'Experience', href: '#experience' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'What I Offer', href: '#what-i-offer' },
+];
+
+const services = [
+  {
+    title: 'Full Stack Development',
+    description:
+      'Designing and developing scalable web applications with modern frontend and backend technologies.',
+    icon: <Code2 size={28} />,
+    technologies: ['React', 'Next.js', 'Node.js', 'Django', 'Laravel'],
+  },
+  {
+    title: 'Frontend Engineering',
+    description:
+      'Creating responsive, accessible and high-performance user interfaces for web applications.',
+    icon: <Smartphone size={28} />,
+    technologies: ['React', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3'],
+  },
+  {
+    title: 'Backend and REST APIs',
+    description:
+      'Building secure APIs, authentication systems, business logic and reliable backend architectures.',
+    icon: <Server size={28} />,
+    technologies: ['Node.js', 'Django', 'Laravel', 'REST API', 'OpenAPI'],
+  },
+  {
+    title: 'Database Solutions',
+    description:
+      'Designing, integrating and optimizing relational databases for performance, security and scalability.',
+    icon: <Database size={28} />,
+    technologies: ['PostgreSQL', 'MySQL', 'Database Design', 'Optimization'],
+  },
+  {
+    title: 'Cloud Deployment',
+    description:
+      'Deploying and maintaining applications using cloud platforms, containers and modern delivery workflows.',
+    icon: <Cloud size={28} />,
+    technologies: ['AWS', 'Google Cloud', 'Docker', 'CI/CD'],
+  },
+  {
+    title: 'AI and Data Analytics',
+    description:
+      'Developing AI-enabled solutions, Python automation and business dashboards that provide actionable insights.',
+    icon: <Users size={28} />,
+    technologies: ['Python', 'AI', 'Machine Learning', 'Power BI'],
+  },
 ];
 
 function Header() {
@@ -51,7 +92,6 @@ function Header() {
     };
 
     handleScroll();
-
     window.addEventListener('scroll', handleScroll);
 
     return () => {
@@ -77,16 +117,13 @@ function Header() {
               {item.label}
             </a>
           ))}
-
-         
         </nav>
-
-       
 
         <button
           className="menu-button"
           type="button"
-          aria-label="Open navigation"
+          aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
+          aria-expanded={menuOpen}
           onClick={() => setMenuOpen((current) => !current)}
         >
           {menuOpen ? <X /> : <Menu />}
@@ -135,9 +172,9 @@ function Hero() {
               <ArrowRight size={18} />
             </a>
 
-            <a className="secondary-button" href="#contact">
-              Contact me
-              <Mail size={18} />
+            <a className="secondary-button" href="#what-i-offer">
+              What I offer
+              <BriefcaseBusiness size={18} />
             </a>
           </div>
 
@@ -146,7 +183,7 @@ function Hero() {
               href="https://github.com/"
               target="_blank"
               rel="noreferrer"
-              aria-label="GitHub"
+              aria-label="GitHub profile"
             >
               <GithubIcon size={20} />
             </a>
@@ -155,13 +192,9 @@ function Hero() {
               href="https://www.linkedin.com/in/linsa-lison-43a5a2376"
               target="_blank"
               rel="noreferrer"
-              aria-label="LinkedIn"
+              aria-label="LinkedIn profile"
             >
               <Linkedin size={20} />
-            </a>
-
-            <a href="mailto:lisonlinsa3@gmail.com" aria-label="Email">
-              <Mail size={20} />
             </a>
           </div>
         </div>
@@ -270,8 +303,8 @@ function About() {
               insights.
             </p>
 
-            <a className="text-link" href="#contact">
-              Let’s work together
+            <a className="text-link" href="#what-i-offer">
+              Explore my capabilities
               <ArrowRight size={17} />
             </a>
           </div>
@@ -289,7 +322,7 @@ function About() {
               <MapPin />
               <div>
                 <h3>Rome, Italy</h3>
-                <p>Available for remote, On-site and hybrid roles</p>
+                <p>Available for remote, on-site and hybrid roles</p>
               </div>
             </article>
 
@@ -465,14 +498,18 @@ function Projects() {
                   ))}
                 </div>
 
-                <div className="project-links">
-                  
-
-                  <a href={project.sourceUrl}>
-                    Source code
-                    <GithubIcon size={16} />
-                  </a>
-                </div>
+                {project.sourceUrl && (
+                  <div className="project-links">
+                    <a
+                      href={project.sourceUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Source code
+                      <GithubIcon size={16} />
+                    </a>
+                  </div>
+                )}
               </div>
             </article>
           ))}
@@ -506,6 +543,7 @@ function Experience() {
 
                   <p className="timeline-period">{item.period}</p>
                   <h3>{item.role}</h3>
+
                   <h4>
                     {item.company} · {item.location}
                   </h4>
@@ -567,94 +605,43 @@ function Experience() {
   );
 }
 
-function Contact() {
+function WhatIOffer() {
   return (
-    <section className="section contact-section" id="contact">
+    <section className="section offer-section" id="what-i-offer">
       <div className="container">
-        <div className="contact-card">
-          <div>
-            <p className="eyebrow">Contact</p>
+        <SectionHeading
+          eyebrow="What I offer"
+          title="Building modern software solutions"
+          description="Technical services and capabilities focused on creating secure, scalable and maintainable digital products."
+        />
 
-            <h2>Let’s build something meaningful</h2>
+        <div className="offer-grid">
+          {services.map((service) => (
+            <article className="offer-card" key={service.title}>
+              <div className="offer-icon">{service.icon}</div>
 
-            <p>
-              I am interested in Full Stack Software Engineer, React Developer,
-              Software Developer and cloud application opportunities in Rome,
-              across Italy and remotely.
-            </p>
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
 
-            <div className="contact-links">
-              <a href="mailto:lisonlinsa3@gmail.com">
-                <Mail />
-                <span>
-                  <small>Email</small>
-                  lisonlinsa3@gmail.com
-                </span>
-              </a>
-
-              <a
-                href="https://www.linkedin.com/in/linsa-lison-43a5a2376"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Linkedin />
-                <span>
-                  <small>LinkedIn</small>
-                  Connect with me
-                </span>
-              </a>
-
-              <div className="contact-location">
-                <MapPin />
-                <span>
-                  <small>Location</small>
-                  Rome, Italy
-                </span>
+              <div className="offer-technologies">
+                {service.technologies.map((technology) => (
+                  <span key={technology}>{technology}</span>
+                ))}
               </div>
-            </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="offer-action">
+          <div>
+            <p className="eyebrow">Selected solutions</p>
+            <h3>See how these capabilities are applied in real projects.</h3>
           </div>
 
-          <form
-            className="contact-form"
-            action="mailto:lisonlinsa3@gmail.com"
-            method="post"
-            encType="text/plain"
-          >
-            <label>
-              Name
-              <input
-                type="text"
-                name="name"
-                placeholder="Your name"
-                required
-              />
-            </label>
-
-            <label>
-              Email
-              <input
-                type="email"
-                name="email"
-                placeholder="your@email.com"
-                required
-              />
-            </label>
-
-            <label>
-              Message
-              <textarea
-                name="message"
-                rows="5"
-                placeholder="Tell me about the opportunity or project"
-                required
-              />
-            </label>
-
-            <button className="primary-button" type="submit">
-              Send message
-              <ArrowRight size={18} />
-            </button>
-          </form>
+          <a className="primary-button" href="#projects">
+            Explore projects
+            <ArrowRight size={18} />
+          </a>
         </div>
       </div>
     </section>
@@ -679,7 +666,7 @@ function Footer() {
             href="https://github.com/"
             target="_blank"
             rel="noreferrer"
-            aria-label="GitHub"
+            aria-label="GitHub profile"
           >
             <GithubIcon size={19} />
           </a>
@@ -688,13 +675,9 @@ function Footer() {
             href="https://www.linkedin.com/in/linsa-lison-43a5a2376"
             target="_blank"
             rel="noreferrer"
-            aria-label="LinkedIn"
+            aria-label="LinkedIn profile"
           >
             <Linkedin size={19} />
-          </a>
-
-          <a href="mailto:lisonlinsa3@gmail.com" aria-label="Email">
-            <Mail size={19} />
           </a>
         </div>
       </div>
@@ -713,7 +696,7 @@ export default function App() {
         <Skills />
         <Projects />
         <Experience />
-        <Contact />
+        <WhatIOffer />
       </main>
 
       <Footer />
